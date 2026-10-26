@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/projects/blob/new/index.js"],"names":["initBlobBundle"],"mappings":"8KAAA,uBAEAA,gB","file":"pages.projects.blob.new.0e9c5f49.chunk.js","sourcesContent":["import initBlobBundle from '~/blob_edit/blob_bundle';\n\ninitBlobBundle();\n"],"sourceRoot":""}

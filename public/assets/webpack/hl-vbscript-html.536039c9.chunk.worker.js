@@ -1,0 +1,2 @@
+self.webpackChunk(["hl-vbscript-html"],{IYGk:function(n,e){n.exports=function(n){return{name:"VBScript in HTML",subLanguage:"xml",contains:[{begin:"<%",end:"%>",subLanguage:"vbscript"}]}}}});
+//# sourceMappingURL=hl-vbscript-html.536039c9.chunk.worker.js.map

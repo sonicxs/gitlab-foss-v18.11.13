@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/projects/pipelines/builds/index.js"],"names":[],"mappings":"sLAAA,mB","file":"pages.projects.pipelines.builds.5abdbe75.chunk.js","sourcesContent":["// /builds is an alias for show\nimport '../show/index';\n"],"sourceRoot":""}

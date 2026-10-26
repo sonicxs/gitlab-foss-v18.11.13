@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["pages.groups.labels.index"],{"1wR6":function(e,s,a){"use strict";a.r(s);var p=a("feg8");Object(p.d)(),Object(p.b)()},95:function(e,s,a){a("HVBj"),e.exports=a("1wR6")}},[[95,"runtime","main","commons-pages.admin.labels.edit-pages.admin.labels.index-pages.groups.labels.edit-pages.groups.label-7a36961f"]]]);
+//# sourceMappingURL=pages.groups.labels.index.2bcecf88.chunk.js.map

@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["hl-python-repl"],{NUM8:function(n,s){n.exports=function(n){return{aliases:["pycon"],contains:[{className:"meta.prompt",starts:{end:/ |$/,starts:{end:"$",subLanguage:"python"}},variants:[{begin:/^>>>(?=[ ]|$)/},{begin:/^\.\.\.(?=[ ]|$)/}]}]}}}}]);
+//# sourceMappingURL=hl-python-repl.ac9aed37.chunk.js.map

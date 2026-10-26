@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/omniauth_callbacks/index.js"],"names":["mount2faAuthentication"],"mappings":"mKAAA,uBAEAA,gB","file":"pages.omniauth_callbacks.16227997.chunk.js","sourcesContent":["import { mount2faAuthentication } from '~/authentication/mount_2fa';\n\nmount2faAuthentication();\n"],"sourceRoot":""}

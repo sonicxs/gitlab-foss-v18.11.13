@@ -1,0 +1,2 @@
+self.webpackChunk(["hl-brainfuck"],{HdK6:function(e,n){e.exports=function(e){const n={className:"literal",begin:/[+-]+/,relevance:0};return{name:"Brainfuck",aliases:["bf"],contains:[e.COMMENT(/[^\[\]\.,\+\-<> \r\n]/,/[\[\]\.,\+\-<> \r\n]/,{contains:[{match:/[ ]+[^\[\]\.,\+\-<> \r\n]/,relevance:0}],returnEnd:!0,relevance:0}),{className:"title",begin:"[\\[\\]]",relevance:0},{className:"string",begin:"[\\.,]",relevance:0},{begin:/(?=\+\+|--)/,contains:[n]},n]}}}});
+//# sourceMappingURL=hl-brainfuck.b8e20f82.chunk.worker.js.map

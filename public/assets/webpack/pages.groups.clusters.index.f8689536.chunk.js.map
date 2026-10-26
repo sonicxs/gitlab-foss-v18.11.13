@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/groups/clusters/index/index.js"],"names":["initClustersListApp"],"mappings":"+KAAA,uBAEAA,gB","file":"pages.groups.clusters.index.f8689536.chunk.js","sourcesContent":["import initClustersListApp from '~/clusters_list';\n\ninitClustersListApp();\n"],"sourceRoot":""}

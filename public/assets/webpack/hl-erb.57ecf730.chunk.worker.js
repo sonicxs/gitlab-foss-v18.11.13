@@ -1,0 +1,2 @@
+self.webpackChunk(["hl-erb"],{daiH:function(e,n){e.exports=function(e){return{name:"ERB",subLanguage:"xml",contains:[e.COMMENT("<%#","%>"),{begin:"<%[%=-]?",end:"[%-]?%>",subLanguage:"ruby",excludeBegin:!0,excludeEnd:!0}]}}}});
+//# sourceMappingURL=hl-erb.57ecf730.chunk.worker.js.map

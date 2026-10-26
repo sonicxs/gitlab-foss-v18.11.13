@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/projects/labels/index/index.js"],"names":["initLabelIndex"],"mappings":"gLAAA,uBAEAA,gB","file":"pages.projects.labels.index.bbd28f50.chunk.js","sourcesContent":["import { initLabelIndex } from '~/labels';\n\ninitLabelIndex();\n"],"sourceRoot":""}

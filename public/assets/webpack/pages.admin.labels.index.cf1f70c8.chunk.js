@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["pages.admin.labels.index"],{"1Rzu":function(a,s,e){"use strict";e.r(s);var i=e("feg8");Object(i.a)()},40:function(a,s,e){e("HVBj"),e("iooJ"),a.exports=e("1Rzu")}},[[40,"runtime","main","commons-pages.admin-pages.admin.abuse_reports-pages.admin.abuse_reports.show-pages.admin.application-926f31b2","commons-pages.admin.labels.edit-pages.admin.labels.index-pages.groups.labels.edit-pages.groups.label-7a36961f"]]]);
+//# sourceMappingURL=pages.admin.labels.index.cf1f70c8.chunk.js.map

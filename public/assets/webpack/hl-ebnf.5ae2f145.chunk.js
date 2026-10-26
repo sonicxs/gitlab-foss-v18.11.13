@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["hl-ebnf"],{mdrG:function(n,a){n.exports=function(n){const a=n.COMMENT(/\(\*/,/\*\)/);return{name:"Extended Backus-Naur Form",illegal:/\S/,contains:[a,{className:"attribute",begin:/^[ ]*[a-zA-Z]+([\s_-]+[a-zA-Z]+)*/},{begin:/=/,end:/[.;]/,contains:[a,{className:"meta",begin:/\?.*\?/},{className:"string",variants:[n.APOS_STRING_MODE,n.QUOTE_STRING_MODE,{begin:"`",end:"`"}]}]}]}}}}]);
+//# sourceMappingURL=hl-ebnf.5ae2f145.chunk.js.map

@@ -1,0 +1,2 @@
+self.webpackChunk(["hl-node-repl"],{"2FHN":function(n,e){n.exports=function(n){return{name:"Node REPL",contains:[{className:"meta.prompt",starts:{end:/ |$/,starts:{end:"$",subLanguage:"javascript"}},variants:[{begin:/^>(?=[ ]|$)/},{begin:/^\.\.\.(?=[ ]|$)/}]}]}}}});
+//# sourceMappingURL=hl-node-repl.b84b78a7.chunk.worker.js.map

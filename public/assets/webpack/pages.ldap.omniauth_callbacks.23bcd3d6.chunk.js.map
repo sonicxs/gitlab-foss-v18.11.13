@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/ldap/omniauth_callbacks/index.js"],"names":["mount2faAuthentication"],"mappings":"0KAAA,uBAEAA,gB","file":"pages.ldap.omniauth_callbacks.23bcd3d6.chunk.js","sourcesContent":["import { mount2faAuthentication } from '~/authentication/mount_2fa';\n\nmount2faAuthentication();\n"],"sourceRoot":""}

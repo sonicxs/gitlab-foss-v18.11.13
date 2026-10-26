@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["pages.projects.labels.index"],{259:function(e,s,a){a("HVBj"),a("gjpc"),e.exports=a("plhZ")},plhZ:function(e,s,a){"use strict";a.r(s);var p=a("feg8");Object(p.c)()}},[[259,"runtime","main","commons-pages.projects-pages.projects.activity-pages.projects.alert_management.details-pages.project-50a40738","commons-pages.admin.labels.edit-pages.admin.labels.index-pages.groups.labels.edit-pages.groups.label-7a36961f"]]]);
+//# sourceMappingURL=pages.projects.labels.index.bbd28f50.chunk.js.map

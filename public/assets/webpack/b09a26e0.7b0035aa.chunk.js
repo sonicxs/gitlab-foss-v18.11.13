@@ -1,0 +1,2 @@
+(this.webpackJsonp=this.webpackJsonp||[]).push([["b09a26e0"],{bkiG:function(e,t,r){"use strict";r.r(t);var c=r("f9TE");r.d(t,"ArchitectureModule",(function(){return c.a})),r.d(t,"createArchitectureServices",(function(){return c.b}));r("88l2")}}]);
+//# sourceMappingURL=b09a26e0.7b0035aa.chunk.js.map

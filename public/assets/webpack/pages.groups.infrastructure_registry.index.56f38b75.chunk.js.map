@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/groups/infrastructure_registry/index/index.js"],"names":["initList"],"mappings":"sLAAA,uBAEAA,gB","file":"pages.groups.infrastructure_registry.index.56f38b75.chunk.js","sourcesContent":["import initList from '~/packages_and_registries/infrastructure_registry/list_app_bundle';\n\ninitList();\n"],"sourceRoot":""}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/admin/clusters/destroy/index.js"],"names":["ClustersBundle"],"mappings":"gLAAA,OAEA,IAFA,UAEIA,K","file":"pages.admin.clusters.destroy.70bc4813.chunk.js","sourcesContent":["import ClustersBundle from '~/clusters/clusters_bundle';\n\nnew ClustersBundle(); // eslint-disable-line no-new\n"],"sourceRoot":""}

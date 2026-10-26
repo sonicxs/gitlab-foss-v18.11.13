@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./pages/admin/clusters/edit/index.js"],"names":["ClustersBundle"],"mappings":"6KAAA,OAEA,IAFA,UAEIA,K","file":"pages.admin.clusters.edit.a63c2f27.chunk.js","sourcesContent":["import ClustersBundle from '~/clusters/clusters_bundle';\n\nnew ClustersBundle(); // eslint-disable-line no-new\n"],"sourceRoot":""}

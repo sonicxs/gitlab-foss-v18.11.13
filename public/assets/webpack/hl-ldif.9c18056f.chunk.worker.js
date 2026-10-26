@@ -1,0 +1,2 @@
+self.webpackChunk(["hl-ldif"],{"9Qiz":function(a,t){a.exports=function(a){return{name:"LDIF",contains:[{className:"attribute",match:"^dn(?=:)",relevance:10},{className:"attribute",match:"^\\w+(?=:)"},{className:"literal",match:"^-"},a.HASH_COMMENT_MODE]}}}});
+//# sourceMappingURL=hl-ldif.9c18056f.chunk.worker.js.map
