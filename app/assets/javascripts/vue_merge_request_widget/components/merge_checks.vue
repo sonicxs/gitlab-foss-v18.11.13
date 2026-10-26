@@ -78,7 +78,7 @@ export default {
       return this.$apollo.queries.state.loading;
     },
     statusIcon() {
-      if (this.warningChecks.length) {
+      if (this.warningChecks.length || !this.isApproved) {
         return 'warning';
       }
 
@@ -88,7 +88,14 @@ export default {
 
       return this.failedChecks.length ? 'failed' : 'success';
     },
+    isApproved() {
+      // GitLab 16.x GraphQL 中常见的是 mr.approved 或 state.approved
+      return Boolean(this.mr?.isApproved);
+    },
     summaryText() {
+      if (!this.isApproved) {
+        return __('%{boldStart}Approval required%{boldEnd}: This merge request requires approvals.');
+      }
       if (this.warningChecks.length) {
         return this.state?.userPermissions?.canMerge
           ? __('%{boldStart}Merge with caution%{boldEnd}: Override added')

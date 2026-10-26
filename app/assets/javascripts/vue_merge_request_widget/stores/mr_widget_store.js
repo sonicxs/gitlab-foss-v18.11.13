@@ -19,6 +19,8 @@ import {
   stateToTransitionMap,
 } from '../constants';
 import { stateKey } from './state_maps';
+import { getSidebarOptions } from '~/sidebar/mount_sidebar';
+import Mediator from '~/sidebar/sidebar_mediator';
 
 const { format } = getTimeago();
 
@@ -34,6 +36,8 @@ export default class MergeRequestStore {
     this.apiApprovePath = data.api_approve_path;
     this.apiUnapprovePath = data.api_unapprove_path;
     this.hasApprovalsAvailable = data.has_approvals_available;
+
+    this.mediator = new Mediator(getSidebarOptions());
 
     this.stateMachine = machine(STATE_MACHINE.definition);
     this.machineValue = this.stateMachine.value;
@@ -136,7 +140,7 @@ export default class MergeRequestStore {
     this.mergeRequestState = data.state;
     this.isOpen = this.mergeRequestState === STATUS_OPEN;
     this.latestSHA = data.diff_head_sha;
-    this.isMergeAllowed = data.mergeable || false;
+    this.rawMergeable = data.mergeable || false;
     this.mergeOngoing = data.merge_ongoing;
     this.allowCollaboration = data.allow_collaboration;
     this.sourceProjectId = data.source_project_id;
@@ -424,13 +428,92 @@ export default class MergeRequestStore {
 
   initApprovals() {
     this.isApproved = this.isApproved || false;
+    if (!this.hasBeenDone) {
+      //initApprovals会被多次调用
+      console.log("First do. Never do again!");
+      this.setApprovedByReviewer();
+      this.hasBeenDone = true;
+    } else if (this.reviewersNum !== this.getReviewersIdSum()) {
+      //reviewers人员有变动时（不会触发setApprovals，所以通过这里调用，会有些延迟），reviewers中的状态就是已更新的了，是可信的
+      //18.5.7(应该从更早的版本开始) 这里不会走到了，this.mediator中的值不会更新了。
+      console.log("Reviewers changed!");
+      this.setApprovedByReviewer();
+    }
   }
 
   setApprovals(data) {
     this.isApproved = data.approved || false;
     this.approvals = true;
-
+    this.setApprovedByReviewer(data);
     this.setState();
+  }
+
+  getReviewersIdSum() {
+    //以reviewers中人员的id的“和”作为reviewers是否有变动的依据，变动后“和”一样的情况概率很小，可以忽略。
+    //18.5.7(应该从更早的版本开始)this.mediator是个静态的值，不会变动了，因此这里没啥用
+    const reviewers = this.mediator?.store?.reviewers || [];
+    const currentIdSum = reviewers.reduce((sum, reviewer) => {
+      const rawId = String(reviewer.id || '');
+      const shortId = Number(rawId.split('/').pop()) || 0; // 兼顾可能存在的 gid:// 格式, 如果转换失败默认给 0
+      return sum + shortId;
+    }, 0);
+    console.log("Reviewers id sum:" + currentIdSum);
+    return currentIdSum;
+  }
+
+  setApprovedByReviewer(approvalsData) {
+    let isAllApproved = true;
+    if (this.mediator) {
+      const reviewers = this.mediator.store?.reviewers || [];//需要approval的人
+      this.reviewersNum = this.getReviewersIdSum();
+
+      let approvedBy = [];
+      if (approvalsData?.approvedBy?.nodes) {
+        approvedBy = approvalsData.approvedBy.nodes.map(user => {
+          //user.id示例 gid://gitlab/User/123
+          const rawId = String(user.id || '');
+          const shortId = rawId.split('/').pop();
+          console.log("approvedBy: " + user.username + ", id:" + shortId);
+          return {
+            id: shortId,
+            username: user.username
+          }
+        });
+      } else {
+        console.log("approvalsData is null");
+      }
+      const approvedIdsSet = new Set(approvedBy.map(a => String(a.id)));//已经approval的人
+      if (approvedIdsSet.size > 0){
+        //如果this.mediator.store.reviewers中的人员有变动，受setApprovals调用时机影响，页面响应也没有那么及时
+        isAllApproved = reviewers.every(reviewer => {
+          console.log(reviewer.username + ", s id:" + reviewer.id +", reviewer.approved:"+ reviewer.approved +", reviewed:"+ reviewer.reviewed);
+          // approve后mediator.store.reviewers不会刷新，需要借助approvalsData里的数据来判断
+          return approvedIdsSet.has(String(reviewer.id));
+        });
+      } else {
+        //由于setApprovals方法可能延迟比较长，所以首次及reviewers变动时判断reviewers中是否全都approved了
+        // 16.11.10开始reviewer.approved中的状态不会更新，但首次进页面及reviewers有修改时的状态是准的
+        //18.5.7(应该从更早的版本开始)reviewers有修改时，this.mediator.store.reviewers不会更新了
+        if (!this.hasBeenDone) {
+          isAllApproved = reviewers.every(reviewer => {
+            console.log(reviewer.username + ", f id:" + reviewer.id + ", reviewer.approved:" + reviewer.approved + ", reviewed:" + reviewer.reviewed);
+            return Boolean(reviewer.approved);
+          });
+        } else {
+          // 如果有reviewers，但没有approvedIdsSet，说明没有人approval。如果没有reviewers，说明不需要approval
+          console.log("reviewers length:" + reviewers.length);
+          if (reviewers.length > 0) {
+            isAllApproved = false;
+          } else {
+            isAllApproved = true;
+          }
+        }
+      }
+
+    } else {
+      console.log("mediator is null");
+    }
+    this.isApproved = isAllApproved || false;
   }
 
   setRemoveSourceBranch(removeSourceBranch) {
@@ -448,6 +531,13 @@ export default class MergeRequestStore {
 
   get preventMerge() {
     return this.isApprovalNeeded && this.preferredAutoMergeStrategy !== MWCP_MERGE_STRATEGY;
+  }
+
+  get isMergeAllowed() {
+    if (!this.isApproved) {
+      return false;
+    }
+    return Boolean(this.rawMergeable);
   }
 
   // Because the state machine doesn't yet handle every state and transition,

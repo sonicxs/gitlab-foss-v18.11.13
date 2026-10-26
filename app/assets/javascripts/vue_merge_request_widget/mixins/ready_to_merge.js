@@ -14,12 +14,16 @@ const MERGE_WHEN_CHECKS_PASS_HELP = helpPagePath('user/project/merge_requests/au
 
 export default {
   computed: {
+    isApprovalNeeded() {
+      return !this.mr.isApproved;
+    },
     isMergeButtonDisabled() {
       const { commitMessage } = this;
       return Boolean(
         !commitMessage.length ||
           !this.shouldShowMergeControls ||
           this.isMakingRequest ||
+          this.isApprovalNeeded ||
           this.mr.preventMerge,
       );
     },

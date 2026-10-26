@@ -12,6 +12,7 @@ import { convertToGraphQLId } from '~/graphql_shared/utils';
 import userAutocompleteWithMRPermissionsQuery from 'ee_else_ce/graphql_shared/queries/project_autocomplete_users_with_mr_permissions.query.graphql';
 import InviteMembersTrigger from '~/invite_members/components/invite_members_trigger.vue';
 import setReviewersMutation from '~/merge_requests/components/reviewers/queries/set_reviewers.mutation.graphql';
+import getMergeRequestReviewers from '~/sidebar/queries/get_merge_request_reviewers.query.graphql';
 import {
   REQUEST_REVIEW_SIMPLE,
   SEARCH_SELECT_REVIEWER_EVENT,
@@ -83,7 +84,7 @@ export default {
     multipleSelectionEnabled: {
       type: Boolean,
       required: false,
-      default: false,
+      default: true,
     },
   },
   data() {
@@ -330,6 +331,17 @@ export default {
           projectPath: this.projectPath,
           iid: this.issuableIid,
         },
+        // 新增：mutation 完成后重新拉取 reviewers 查询
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: getMergeRequestReviewers,
+            variables: {
+              fullPath: this.projectPath,
+              iid: this.issuableIid,
+            },
+          },
+        ],
       });
 
       this.loading = false;
